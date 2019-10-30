@@ -7,7 +7,10 @@
     "dev": "nodemon src/server.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "mysql2": "^2.0.0",
+    "sequelize": "^5.21.2"
   },
   "devDependencies": {
     "eslint": "^6.5.1",

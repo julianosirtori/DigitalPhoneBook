@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import api from '../../services/api';
 
-import { Container, FormLogin, InputController, ButtonSubmit } from './styles';
-import AdminStyle from '../../styles/admin';
+import { Container, FormLogin } from './styles';
+import AdminStyle, { InputController, ButtonSubmit } from '../../styles/admin';
 
 export default class Login extends Component {
     static propTypes = {
@@ -83,7 +83,7 @@ export default class Login extends Component {
                             {loading ? (
                                 <AiOutlineReload />
                             ) : (
-                                <strong>Cadastrar</strong>
+                                <strong>Entrar</strong>
                             )}
                         </ButtonSubmit>
                         <p>{error}</p>

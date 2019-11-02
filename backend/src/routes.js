@@ -3,12 +3,19 @@ import { Router } from 'express';
 import authMiddleware from './app/middlewares/auth';
 
 import UserController from './app/controllers/UserController';
+import PhoneController from './app/controllers/PhoneController';
 import SessionController from './app/controllers/SessionController';
 
 const routes = new Router();
 
 routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
+
+routes.get('/phones', PhoneController.index);
+routes.post('/phones', PhoneController.store);
+routes.get('/phones/:id', PhoneController.show);
+routes.put('/phones/:id', PhoneController.update);
+routes.delete('/phones/:id', PhoneController.delete);
 
 routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);

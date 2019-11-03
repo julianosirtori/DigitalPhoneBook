@@ -28,8 +28,9 @@ export const BtnUsuarios = styled(Link)`
     border-radius: 4px;
     margin-right: 16px;
 `;
-export const BtnLogout = styled(Link)`
+export const BtnLogout = styled.button`
     background: #e30613;
+    border: none;
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -52,4 +53,48 @@ export const FormTelefone = styled.div`
         font-weight: bold;
     }
 `;
-export const TableTelefones = styled.div``;
+export const ButtonEditar = styled.button`
+    border: none;
+    background: #0e4194;
+    color: white;
+    margin-right: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 4px 13px;
+    border-radius: 4px;
+`;
+export const ButtonApagar = styled.button`
+    border: none;
+    background: #e30613;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 4px 13px;
+    border-radius: 4px;
+`;
+export const TableTelefones = styled.table`
+    width: 100%;
+    max-width: 680px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    thead {
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    tr {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    td,
+    th {
+        padding: 15px 10px;
+        display: table-cell;
+        text-align: left;
+        vertical-align: middle;
+        border-radius: 2px;
+    }
+`;

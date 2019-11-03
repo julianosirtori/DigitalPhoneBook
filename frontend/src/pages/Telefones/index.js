@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { AiOutlineReload } from 'react-icons/ai';
 
+import api from '../../services/api';
+
 import {
     Container,
     ContainerBotoes,
@@ -14,20 +16,25 @@ import AdminStyle, { InputController, ButtonSubmit } from '../../styles/admin';
 
 export default class Telefones extends Component {
     state = {
-        telefones: [],
-        telefone: {},
+        phones: [],
+        newPhone: {},
         loading: false,
     };
 
+    async componentDidMount() {
+        const response = await api.get('/phones');
+        console.log(response);
+    }
+
     render() {
-        const { telefones, telefone, loading } = this.state;
+        const { phones, newPhone, loading } = this.state;
         return (
             <>
                 <AdminStyle />
                 <Container>
                     <ContainerBotoes>
-                        <BtnUsuarios>Usuarios</BtnUsuarios>
-                        <BtnLogout>Sair</BtnLogout>
+                        <BtnUsuarios to="/user">Usuarios</BtnUsuarios>
+                        <BtnLogout to="/login">Sair</BtnLogout>
                     </ContainerBotoes>
                     <FormTelefone>
                         <h1>Cadastro de Ramais</h1>
@@ -36,6 +43,7 @@ export default class Telefones extends Component {
                             <input
                                 type="text"
                                 name="name"
+                                value={newPhone.name}
                                 placeholder="Descrição do Telefone"
                             />
                         </InputController>
@@ -44,18 +52,20 @@ export default class Telefones extends Component {
                             <input
                                 type="text"
                                 name="phone"
+                                value={newPhone.phone}
                                 placeholder="Numero do Telefone"
                             />
                         </InputController>
                         <InputController>
-                            <label>Telefone*</label>
+                            <label>Tags*</label>
                             <input
                                 type="text"
                                 name="tags"
+                                value={newPhone.tags}
                                 placeholder="Tags separadas com ;"
                             />
                         </InputController>
-                        <ButtonSubmit disabled={loading} loading={loading}>
+                        <ButtonSubmit loading={loading ? 1 : 0}>
                             {loading ? (
                                 <AiOutlineReload />
                             ) : (
@@ -63,7 +73,11 @@ export default class Telefones extends Component {
                             )}
                         </ButtonSubmit>
                     </FormTelefone>
-                    <TableTelefones />
+                    <TableTelefones>
+                        {phones.map(phone => (
+                            <p>{phone.phone}</p>
+                        ))}
+                    </TableTelefones>
                 </Container>
             </>
         );

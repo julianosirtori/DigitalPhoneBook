@@ -3,6 +3,7 @@ import { AiOutlineReload } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 import api from '../../services/api';
+import { login } from '../../services/auth';
 
 import { Container, FormLogin } from './styles';
 import AdminStyle, { InputController, ButtonSubmit } from '../../styles/admin';
@@ -33,19 +34,17 @@ export default class Login extends Component {
         this.setState({ loading: true });
         try {
             const response = await api.post('/sessions', this.state);
-            const { token, user } = response.data;
-            localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify(user));
+            const { token } = response.data;
+            login(token);
 
-            this.setState({ error: '' });
+            this.setState({ error: '', loading: false });
             const { history } = this.props;
             history.push('/telefones');
         } catch (err) {
             const { data } = err.response;
             const { error } = data;
-            this.setState({ error });
+            this.setState({ error, loading: false });
         }
-        this.setState({ loading: false });
     };
 
     render() {
@@ -79,7 +78,7 @@ export default class Login extends Component {
                             />
                         </InputController>
 
-                        <ButtonSubmit disabled={loading} loading={loading}>
+                        <ButtonSubmit loading={loading ? 1 : 0}>
                             {loading ? (
                                 <AiOutlineReload />
                             ) : (

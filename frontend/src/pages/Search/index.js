@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MdCall } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
+import api from '../../services/api';
 import {
     Container,
     ImageLogo,
@@ -19,17 +20,31 @@ export default class Search extends Component {
     state = {
         phones: [],
         search: '',
+        loading: false,
     };
 
-    handleInputSearch = event => {
+    handleInputSearch = async event => {
         const { value } = event.target;
         this.setState({
             search: value,
         });
+        this.setState({ loading: true });
+        if (value !== '' && value.length % 2 === 0) {
+            try {
+                const response = await api.get(`/searchs/${value}`);
+                this.setState({
+                    phones: response.data,
+                    loading: false,
+                });
+            } catch (error) {
+                console.log(error);
+                this.setState({ loading: false });
+            }
+        }
     };
 
     render() {
-        const { phones, search } = this.state;
+        const { phones, search, loading } = this.state;
         return (
             <Container>
                 <ContainerSearch>
@@ -43,150 +58,20 @@ export default class Search extends Component {
                 </ContainerSearch>
 
                 <ListPhones>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
-                    <ItemPhone>
-                        <MdCall size={48} color="#0E4194" />
-                        <DescritionPhone>
-                            <strong>Juliano Sirtori</strong>
-                            <Tags>
-                                <span>#informatica</span>
-                                <span>#central</span>
-                                <span>#qlikview</span>
-                            </Tags>
-                        </DescritionPhone>
-                        <NumberPhone>606</NumberPhone>
-                    </ItemPhone>
+                    {phones.map(phone => (
+                        <ItemPhone key={phone.id}>
+                            <MdCall size={48} color="#0E4194" />
+                            <DescritionPhone>
+                                <strong>{phone.name}</strong>
+                                <Tags>
+                                    {phone.tags.split(';').map(tag => (
+                                        <span key={tag}>#{tag}</span>
+                                    ))}
+                                </Tags>
+                            </DescritionPhone>
+                            <NumberPhone>{phone.phone}</NumberPhone>
+                        </ItemPhone>
+                    ))}
                 </ListPhones>
 
                 <Footer>

@@ -20,7 +20,6 @@ export default class Search extends Component {
     state = {
         phones: [],
         search: '',
-        loading: false,
     };
 
     handleInputSearch = async event => {
@@ -28,23 +27,21 @@ export default class Search extends Component {
         this.setState({
             search: value,
         });
-        this.setState({ loading: true });
+
         if (value !== '' && value.length % 2 === 0) {
             try {
                 const response = await api.get(`/searchs/${value}`);
                 this.setState({
                     phones: response.data,
-                    loading: false,
                 });
             } catch (error) {
                 console.log(error);
-                this.setState({ loading: false });
             }
         }
     };
 
     render() {
-        const { phones, search, loading } = this.state;
+        const { phones, search } = this.state;
         return (
             <Container>
                 <ContainerSearch>

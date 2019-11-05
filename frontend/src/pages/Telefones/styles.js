@@ -98,3 +98,29 @@ export const TableTelefones = styled.table`
         border-radius: 2px;
     }
 `;
+
+export const Paginator = styled.div`
+    display: flex;
+    width: 100%;
+    max-width: 680px;
+    flex-direction: row;
+    padding: 8px;
+    justify-content: space-between;
+    margin-top: 16px;
+
+    span {
+        font-size: 16px;
+        color: #0e4194;
+        font-weight: bold;
+    }
+`;
+export const ButtonNavigationPage = styled.button`
+    border: none;
+    background: #0e4194;
+    color: white;
+    padding: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+`;

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { AiOutlineReload, AiFillEdit, AiFillDelete } from 'react-icons/ai';
+import {
+    AiOutlineReload,
+    AiFillEdit,
+    AiFillDelete,
+    AiOutlineArrowLeft,
+    AiOutlineArrowRight,
+} from 'react-icons/ai';
 
 import api from '../../services/api';
 import { logout } from '../../services/auth';
@@ -13,6 +19,8 @@ import {
     BtnLogout,
     ButtonEditar,
     ButtonApagar,
+    Paginator,
+    ButtonNavigationPage,
 } from './styles';
 
 import AdminStyle, { InputController, ButtonSubmit } from '../../styles/admin';
@@ -25,10 +33,11 @@ export default class Telefones extends Component {
         phone: '',
         tags: '',
         loading: false,
+        page: 1,
     };
 
     async componentDidMount() {
-        this.findAllPhones();
+        this.findPhones();
     }
 
     handleInput = event => {
@@ -43,7 +52,7 @@ export default class Telefones extends Component {
         try {
             this.setState({ loading: true });
             await api.post('/phones', { name, phone, tags });
-            this.findAllPhones();
+            this.findPhones();
             this.setState({
                 loading: false,
                 name: '',
@@ -61,7 +70,7 @@ export default class Telefones extends Component {
         try {
             this.setState({ loading: true });
             await api.put(`/phones/${id}`, { name, phone, tags });
-            this.findAllPhones();
+            this.findPhones();
             this.setState({
                 loading: false,
                 name: '',
@@ -91,7 +100,7 @@ export default class Telefones extends Component {
             try {
                 this.setState({ loading: true });
                 await api.delete(`/phones/${id}`);
-                await this.findAllPhones();
+                await this.findPhones();
                 this.setState({ loading: false });
             } catch (erro) {
                 console.log(erro);
@@ -105,9 +114,33 @@ export default class Telefones extends Component {
         history.push('/login');
     };
 
-    async findAllPhones() {
+    nextPage = async () => {
+        const { page } = this.state;
+        this.setState({
+            page: page + 1,
+        });
+        window.scrollTo(0, 0);
+        await this.findPhones();
+    };
+
+    prevPage = async () => {
+        const { page } = this.state;
+        this.setState({
+            page: page - 1,
+        });
+
+        window.scrollTo(0, 0);
+        await this.findPhones();
+    };
+
+    async findPhones() {
+        const { page } = this.state;
         try {
-            const response = await api.get('/phones');
+            const response = await api.get('/phones', {
+                params: {
+                    page,
+                },
+            });
             const { data } = response;
             this.setState({ phones: data });
         } catch (err) {
@@ -116,7 +149,7 @@ export default class Telefones extends Component {
     }
 
     render() {
-        const { phones, name, phone, tags, id, loading } = this.state;
+        const { phones, name, phone, tags, id, loading, page } = this.state;
         return (
             <>
                 <AdminStyle />
@@ -185,24 +218,22 @@ export default class Telefones extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {phones.map(phone => (
-                                <tr key={phone.id}>
-                                    <td>{phone.name}</td>
-                                    <td>{phone.tags}</td>
-                                    <td>{phone.phone}</td>
+                            {phones.map(phon => (
+                                <tr key={phon.id}>
+                                    <td>{phon.name}</td>
+                                    <td>{phon.tags}</td>
+                                    <td>{phon.phone}</td>
                                     <td>
                                         <ButtonEditar
                                             onClick={() =>
-                                                this.handleButtonEdit(phone.id)
+                                                this.handleButtonEdit(phon.id)
                                             }
                                         >
                                             <AiFillEdit size={14} />
                                         </ButtonEditar>
                                         <ButtonApagar
                                             onClick={() =>
-                                                this.handleButtonDelete(
-                                                    phone.id
-                                                )
+                                                this.handleButtonDelete(phon.id)
                                             }
                                         >
                                             <AiFillDelete size={14} />
@@ -212,6 +243,15 @@ export default class Telefones extends Component {
                             ))}
                         </tbody>
                     </TableTelefones>
+                    <Paginator>
+                        <ButtonNavigationPage onClick={this.prevPage}>
+                            <AiOutlineArrowLeft size={16} />
+                        </ButtonNavigationPage>
+                        <span>Pagina: {page}</span>
+                        <ButtonNavigationPage onClick={this.nextPage}>
+                            <AiOutlineArrowRight size={16} />
+                        </ButtonNavigationPage>
+                    </Paginator>
                 </Container>
             </>
         );

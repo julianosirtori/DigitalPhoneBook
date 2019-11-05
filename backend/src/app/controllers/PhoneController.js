@@ -1,10 +1,29 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Phone from '../models/Phone';
 
 class PhoneController {
     async index(req, res) {
+        const { page = 1, search = '' } = req.query;
         const phones = await Phone.findAll({
+            where: {
+                [Op.or]: [
+                    {
+                        name: {
+                            [Op.like]: `%${search}%`,
+                        },
+                    },
+                    {
+                        tags: {
+                            [Op.like]: `%${search}%`,
+                        },
+                    },
+                ],
+            },
+            limit: 20,
+            offset: (page - 1) * 20,
             attributes: ['id', 'name', 'phone', 'tags'],
+            order: ['name'],
         });
         res.json(phones);
     }

@@ -5,15 +5,11 @@ class SearchController {
     async index(req, res) {
         const { search } = req.params;
         const phones = await Phone.findAll({
+            limit: 15,
             where: {
                 [Op.or]: [
                     {
                         name: {
-                            [Op.like]: `%${search}%`,
-                        },
-                    },
-                    {
-                        phone: {
                             [Op.like]: `%${search}%`,
                         },
                     },

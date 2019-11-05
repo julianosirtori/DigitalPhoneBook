@@ -25,7 +25,7 @@ class PhoneController {
             attributes: ['id', 'name', 'phone', 'tags'],
             order: ['name'],
         });
-        res.json(phones);
+        return res.json(phones);
     }
 
     async store(req, res) {

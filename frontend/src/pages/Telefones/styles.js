@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
     display: flex;
     max-width: 824px;
-    margin: 32px auto;
+    margin: 0px auto;
     flex-direction: column;
     align-items: center;
     background: white;
     min-height: 100%;
-    border-radius: 6px;
 `;
+
 export const ContainerBotoes = styled.div`
     display: flex;
     flex-direction: row;
@@ -75,7 +75,7 @@ export const ButtonApagar = styled.button`
 export const TableTelefones = styled.table`
     width: 100%;
     max-width: 680px;
-    margin-top: 16px;
+
     margin-bottom: 16px;
     display: table;
     border-collapse: collapse;
@@ -123,4 +123,10 @@ export const ButtonNavigationPage = styled.button`
     &:hover {
         cursor: pointer;
     }
+`;
+
+export const ContainerSerch = styled.div`
+    margin-top: 16px;
+    width: 100%;
+    max-width: 680px;
 `;

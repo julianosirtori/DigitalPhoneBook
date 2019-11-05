@@ -21,6 +21,7 @@ import {
     ButtonApagar,
     Paginator,
     ButtonNavigationPage,
+    ContainerSerch,
 } from './styles';
 
 import AdminStyle, { InputController, ButtonSubmit } from '../../styles/admin';
@@ -32,6 +33,7 @@ export default class Telefones extends Component {
         name: '',
         phone: '',
         tags: '',
+        search: '',
         loading: false,
         page: 1,
     };
@@ -45,6 +47,12 @@ export default class Telefones extends Component {
         this.setState({
             [name]: value,
         });
+    };
+
+    handleInputSearch = event => {
+        const { value } = event.target;
+        this.setState({ search: value });
+        this.findPhones();
     };
 
     handleSubmit = async () => {
@@ -134,11 +142,12 @@ export default class Telefones extends Component {
     };
 
     async findPhones() {
-        const { page } = this.state;
+        const { page, search } = this.state;
         try {
             const response = await api.get('/phones', {
                 params: {
                     page,
+                    search,
                 },
             });
             const { data } = response;
@@ -149,7 +158,16 @@ export default class Telefones extends Component {
     }
 
     render() {
-        const { phones, name, phone, tags, id, loading, page } = this.state;
+        const {
+            phones,
+            name,
+            phone,
+            tags,
+            id,
+            loading,
+            page,
+            search,
+        } = this.state;
         return (
             <>
                 <AdminStyle />
@@ -208,6 +226,17 @@ export default class Telefones extends Component {
                             )}
                         </ButtonSubmit>
                     </FormTelefone>
+                    <ContainerSerch>
+                        <InputController>
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={this.handleInputSearch}
+                                placeholder="Comece a digitar para pesquisar"
+                            />
+                        </InputController>
+                    </ContainerSerch>
+
                     <TableTelefones>
                         <thead>
                             <tr>

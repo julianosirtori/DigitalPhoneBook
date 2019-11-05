@@ -12,7 +12,7 @@ import { logout } from '../../services/auth';
 
 import { BtnTelefones } from './styles';
 
-import AdminStyle, {
+import {
     InputController,
     Table,
     ButtonSubmit,
@@ -145,7 +145,6 @@ export default class User extends Component {
         const { users, name, email, id, page, loading } = this.state;
         return (
             <>
-                <AdminStyle />
                 <Container>
                     <ContainerBotoes>
                         <BtnTelefones to="/telefones">Telefones</BtnTelefones>

@@ -6,7 +6,7 @@ import api from '../../services/api';
 import { login } from '../../services/auth';
 
 import { Container, FormLogin } from './styles';
-import AdminStyle, { InputController, ButtonSubmit } from '../../styles/admin';
+import { InputController, ButtonSubmit } from '../../styles/admin';
 
 export default class Login extends Component {
     static propTypes = {
@@ -51,7 +51,6 @@ export default class Login extends Component {
         const { email, password, error, loading } = this.state;
         return (
             <>
-                <AdminStyle />
                 <Container>
                     <FormLogin onSubmit={this.handleSubmit}>
                         <h1>Login</h1>

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import background from '../assets/images/background.png';
 
 export default createGlobalStyle`
     *{
@@ -16,6 +17,11 @@ export default createGlobalStyle`
 
     button {
         cursor: pointer;
+    }
+
+    body{
+        background: url(${background}) no-repeat fixed;
+        background-size: cover;
     }
 
 `;

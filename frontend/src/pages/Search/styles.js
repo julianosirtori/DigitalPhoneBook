@@ -3,8 +3,12 @@ import Logo from '../../assets/images/logo.svg';
 
 export const Container = styled.div`
     display: flex;
+    max-width: 824px;
+    margin: 0px auto;
     flex-direction: column;
-    justify-items: center;
+    align-items: center;
+    background: white;
+    min-height: 100vh;
 `;
 
 export const ContainerSearch = styled.div`
@@ -77,7 +81,8 @@ export const ItemPhone = styled.li`
 
 export const DescritionPhone = styled.div`
     margin: auto 15px auto 15px;
-    width: 100%;
+    flex: 1;
+    /* width: 100%; */
     strong {
         color: #0e4194;
         font-size: 34px;
@@ -101,15 +106,15 @@ export const Tags = styled.div`
 
 export const NumberPhone = styled.div`
     color: #e30613;
-    font-size: 34px;
+    font-size: 28px;
     font-weight: bold;
     margin: auto 15px auto 15px;
 `;
 
 export const Footer = styled.div`
-    height: 56px;
+    height: 35px;
     width: 100%;
-    background: #e3e3e3;
+    /* background: #e3e3e3; */
     position: fixed;
     left: 0;
     bottom: 0;
@@ -119,7 +124,7 @@ export const Footer = styled.div`
     justify-content: flex-end;
 
     a {
-        color: #5f6368;
+        color: white;
         text-decoration: none;
         font-size: 12px;
         margin: auto 16px;

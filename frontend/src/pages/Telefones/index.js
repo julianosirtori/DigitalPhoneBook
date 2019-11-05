@@ -12,7 +12,7 @@ import { logout } from '../../services/auth';
 
 import { BtnUsuarios, ContainerSerch } from './styles';
 
-import AdminStyle, {
+import {
     InputController,
     Table,
     Form,
@@ -170,7 +170,6 @@ export default class Telefones extends Component {
         } = this.state;
         return (
             <>
-                <AdminStyle />
                 <Container>
                     <ContainerBotoes>
                         <BtnUsuarios to="/usuarios">Usuarios</BtnUsuarios>

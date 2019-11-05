@@ -1,14 +1,5 @@
-import styled, { css, keyframes, createGlobalStyle } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { darken } from 'polished';
-
-import background from '../assets/images/background.png';
-
-export default createGlobalStyle`
-  body{
-        background: url(${background}) no-repeat fixed;
-        background-size: cover;
-    }
-`;
 
 export const Form = styled.div`
     width: 100%;

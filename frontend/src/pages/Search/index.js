@@ -28,7 +28,7 @@ export default class Search extends Component {
             search: value,
         });
 
-        if (value !== '' && value.length % 2 === 0) {
+        if (value !== '' && value.length > 2) {
             try {
                 const response = await api.get(`/searchs/${value}`);
                 this.setState({

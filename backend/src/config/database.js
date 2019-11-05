@@ -1,10 +1,10 @@
 module.exports = {
     dialect: 'mysql',
-    host: 'localhost',
-    port: '3306',
-    username: 'root',
-    password: '123456',
-    database: 'phonebook',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     define: {
         timestamps: true,
         underscored: true,

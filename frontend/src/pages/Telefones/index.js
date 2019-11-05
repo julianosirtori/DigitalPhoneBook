@@ -10,21 +10,21 @@ import {
 import api from '../../services/api';
 import { logout } from '../../services/auth';
 
-import {
+import { BtnUsuarios, ContainerSerch } from './styles';
+
+import AdminStyle, {
+    InputController,
+    Table,
+    Form,
+    ButtonSubmit,
     Container,
     ContainerBotoes,
-    FormTelefone,
-    TableTelefones,
-    BtnUsuarios,
     BtnLogout,
     ButtonEditar,
     ButtonApagar,
     Paginator,
     ButtonNavigationPage,
-    ContainerSerch,
-} from './styles';
-
-import AdminStyle, { InputController, ButtonSubmit } from '../../styles/admin';
+} from '../../styles/admin';
 
 export default class Telefones extends Component {
     state = {
@@ -173,12 +173,12 @@ export default class Telefones extends Component {
                 <AdminStyle />
                 <Container>
                     <ContainerBotoes>
-                        <BtnUsuarios to="/user">Usuarios</BtnUsuarios>
+                        <BtnUsuarios to="/usuarios">Usuarios</BtnUsuarios>
                         <BtnLogout onClick={this.handleButtonSair}>
                             Sair
                         </BtnLogout>
                     </ContainerBotoes>
-                    <FormTelefone>
+                    <Form>
                         <h1>Cadastro de Ramais</h1>
                         <input name="id" type="hidden" value={id} />
                         <InputController>
@@ -225,7 +225,7 @@ export default class Telefones extends Component {
                                 <strong>Cadastrar</strong>
                             )}
                         </ButtonSubmit>
-                    </FormTelefone>
+                    </Form>
                     <ContainerSerch>
                         <InputController>
                             <input
@@ -237,7 +237,7 @@ export default class Telefones extends Component {
                         </InputController>
                     </ContainerSerch>
 
-                    <TableTelefones>
+                    <Table>
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -271,7 +271,7 @@ export default class Telefones extends Component {
                                 </tr>
                             ))}
                         </tbody>
-                    </TableTelefones>
+                    </Table>
                     <Paginator>
                         <ButtonNavigationPage onClick={this.prevPage}>
                             <AiOutlineArrowLeft size={16} />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import {
     AiOutlineReload,
     AiFillEdit,
@@ -68,8 +69,10 @@ export default class Telefones extends Component {
                 phone: '',
                 tags: '',
             });
+            toast.success('Telefone Cadastrado com sucesso!!');
         } catch (erro) {
             console.log(erro);
+            toast.error('Ocorreu um erro');
         }
     };
 
@@ -86,8 +89,10 @@ export default class Telefones extends Component {
                 phone: '',
                 tags: '',
             });
+            toast.success('Telefone Editado com sucesso!!');
         } catch (erro) {
             console.log(erro);
+            toast.error('Ocorreu um erro');
         }
     };
 
@@ -99,6 +104,7 @@ export default class Telefones extends Component {
             this.setState({ name, phone, id, tags, loading: false });
         } catch (erro) {
             console.log(erro);
+            toast.error('Ocorreu um erro');
         }
     };
 
@@ -110,8 +116,10 @@ export default class Telefones extends Component {
                 await api.delete(`/phones/${id}`);
                 await this.findPhones();
                 this.setState({ loading: false });
+                toast.success('Telefone Apagado com sucesso!!');
             } catch (erro) {
                 console.log(erro);
+                toast.error('Ocorreu um erro');
             }
         }
     };
@@ -154,6 +162,7 @@ export default class Telefones extends Component {
             this.setState({ phones: data });
         } catch (err) {
             console.log(err);
+            toast.error('Ocorreu um erro');
         }
     }
 
@@ -170,6 +179,7 @@ export default class Telefones extends Component {
         } = this.state;
         return (
             <>
+                <ToastContainer />
                 <Container>
                     <ContainerBotoes>
                         <BtnUsuarios to="/usuarios">Usuarios</BtnUsuarios>

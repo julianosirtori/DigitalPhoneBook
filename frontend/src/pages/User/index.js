@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import {
     AiOutlineReload,
     AiFillEdit,
@@ -52,8 +53,10 @@ export default class User extends Component {
                 id: '',
                 email: '',
             });
+            toast.success('Usuario Cadastrado com sucesso!!');
         } catch (erro) {
             console.log(erro);
+            toast.error('Ocorreu um erro');
         }
     };
 
@@ -69,8 +72,10 @@ export default class User extends Component {
                 id: '',
                 email: '',
             });
+            toast.success('Usuario Editado com sucesso!!');
         } catch (erro) {
             console.log(erro);
+            toast.error('Ocorreu um erro');
         }
     };
 
@@ -101,6 +106,7 @@ export default class User extends Component {
             this.setState({ name, id, email, loading: false });
         } catch (erro) {
             console.log(erro);
+            toast.error('Ocorreu um erro');
         }
     };
 
@@ -112,8 +118,10 @@ export default class User extends Component {
                 await api.delete(`/users/${id}`);
                 await this.findUsers();
                 this.setState({ loading: false });
+                toast.success('Usuario Apagado com sucesso!!');
             } catch (erro) {
                 console.log(erro);
+                toast.error('Ocorreu um erro');
             }
         }
     };
@@ -138,6 +146,7 @@ export default class User extends Component {
             this.setState({ users: data });
         } catch (err) {
             console.log(err);
+            toast.error('Ocorreu um erro');
         }
     };
 
@@ -145,6 +154,7 @@ export default class User extends Component {
         const { users, name, email, id, page, loading } = this.state;
         return (
             <>
+                <ToastContainer />
                 <Container>
                     <ContainerBotoes>
                         <BtnTelefones to="/telefones">Telefones</BtnTelefones>

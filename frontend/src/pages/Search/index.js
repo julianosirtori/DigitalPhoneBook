@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MdCall } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 import api from '../../services/api';
 import {
@@ -36,6 +37,7 @@ export default class Search extends Component {
                 });
             } catch (error) {
                 console.log(error);
+                toast.error('Ocorreu um erro');
             }
         }
     };
@@ -43,38 +45,41 @@ export default class Search extends Component {
     render() {
         const { phones, search } = this.state;
         return (
-            <Container>
-                <ContainerSearch>
-                    <ImageLogo />
-                    <InputSearch
-                        type="text"
-                        placeholder="Comece a Digitar para pesquisar"
-                        value={search}
-                        onChange={this.handleInputSearch}
-                    />
-                </ContainerSearch>
+            <>
+                <ToastContainer />
+                <Container>
+                    <ContainerSearch>
+                        <ImageLogo />
+                        <InputSearch
+                            type="text"
+                            placeholder="Comece a Digitar para pesquisar"
+                            value={search}
+                            onChange={this.handleInputSearch}
+                        />
+                    </ContainerSearch>
 
-                <ListPhones>
-                    {phones.map(phone => (
-                        <ItemPhone key={phone.id}>
-                            <MdCall size={48} color="#0E4194" />
-                            <DescritionPhone>
-                                <strong>{phone.name}</strong>
-                                <Tags>
-                                    {phone.tags.split(';').map(tag => (
-                                        <span key={tag}>#{tag}</span>
-                                    ))}
-                                </Tags>
-                            </DescritionPhone>
-                            <NumberPhone>{phone.phone}</NumberPhone>
-                        </ItemPhone>
-                    ))}
-                </ListPhones>
+                    <ListPhones>
+                        {phones.map(phone => (
+                            <ItemPhone key={phone.id}>
+                                <MdCall size={48} color="#0E4194" />
+                                <DescritionPhone>
+                                    <strong>{phone.name}</strong>
+                                    <Tags>
+                                        {phone.tags.split(';').map(tag => (
+                                            <span key={tag}>#{tag}</span>
+                                        ))}
+                                    </Tags>
+                                </DescritionPhone>
+                                <NumberPhone>{phone.phone}</NumberPhone>
+                            </ItemPhone>
+                        ))}
+                    </ListPhones>
 
-                <Footer>
-                    <Link to="telefones">Administração</Link>
-                </Footer>
-            </Container>
+                    <Footer>
+                        <Link to="telefones">Administração</Link>
+                    </Footer>
+                </Container>
+            </>
         );
     }
 }

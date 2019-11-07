@@ -34,6 +34,7 @@ export default class User extends Component {
         name: '',
         page: 1,
         email: '',
+        password: '',
         loading: false,
     };
 
@@ -42,15 +43,16 @@ export default class User extends Component {
     }
 
     handleSubmit = async () => {
-        const { name, email } = this.state;
+        const { name, email, password } = this.state;
         try {
             this.setState({ loading: true });
-            await api.post('/users', { name, email });
+            await api.post('/users', { name, email, password });
             this.findUsers();
             this.setState({
                 loading: false,
                 name: '',
                 id: '',
+                password: '',
                 email: '',
             });
             toast.success('Usuario Cadastrado com sucesso!!');
@@ -61,15 +63,20 @@ export default class User extends Component {
     };
 
     handleSubmitEdit = async () => {
-        const { name, email, id } = this.state;
+        const { name, email, id, password } = this.state;
         try {
             this.setState({ loading: true });
-            await api.put(`/users/${id}`, { name, email });
+            await api.put(`/users/${id}`, {
+                name,
+                email,
+                password: password !== '' && password,
+            });
             this.findUsers();
             this.setState({
                 loading: false,
                 name: '',
                 id: '',
+                password: '',
                 email: '',
             });
             toast.success('Usuario Editado com sucesso!!');
@@ -85,7 +92,7 @@ export default class User extends Component {
             page: page + 1,
         });
         window.scrollTo(0, 0);
-        await this.findPhones();
+        await this.findUsers();
     };
 
     prevPage = async () => {
@@ -95,7 +102,7 @@ export default class User extends Component {
         });
 
         window.scrollTo(0, 0);
-        await this.findPhones();
+        await this.findUsers();
     };
 
     handleButtonEdit = async id => {
@@ -151,7 +158,7 @@ export default class User extends Component {
     };
 
     render() {
-        const { users, name, email, id, page, loading } = this.state;
+        const { users, name, email, id, page, loading, password } = this.state;
         return (
             <>
                 <ToastContainer />
@@ -183,6 +190,16 @@ export default class User extends Component {
                                 onChange={this.handleInput}
                                 value={email}
                                 placeholder="Email de acesso"
+                            />
+                        </InputController>
+                        <InputController>
+                            <label>Senha*</label>
+                            <input
+                                type="password"
+                                name="password"
+                                onChange={this.handleInput}
+                                value={password}
+                                placeholder="Senha de acesso"
                             />
                         </InputController>
                         <ButtonSubmit

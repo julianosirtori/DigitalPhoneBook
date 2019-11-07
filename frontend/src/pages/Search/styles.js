@@ -15,7 +15,8 @@ export const ContainerSearch = styled.div`
     display: flex;
     flex-direction: column;
     justify-items: center;
-    width: 512px;
+    width: 100%;
+    max-width: 512px;
     padding: 6px;
     margin: 0px auto;
     margin-top: 56px;
@@ -25,7 +26,7 @@ export const ContainerSearch = styled.div`
 export const ImageLogo = styled.img.attrs({
     src: Logo,
 })`
-    /* width: 90%; */
+    width: 90%;
     height: 115px;
     margin: 0px auto;
 `;
@@ -41,7 +42,8 @@ export const InputSearch = styled.input`
 
 export const ListPhones = styled.ul`
     margin: 0 auto;
-    width: 720px;
+    width: 100%;
+    max-width: 720px;
     height: 496px;
     overflow: hidden;
     overflow-y: scroll;
@@ -82,10 +84,10 @@ export const ItemPhone = styled.li`
 export const DescritionPhone = styled.div`
     margin: auto 15px auto 15px;
     flex: 1;
-    /* width: 100%; */
+    width: 100%;
     strong {
         color: #0e4194;
-        font-size: 34px;
+        font-size: 28px;
         line-height: 40px;
     }
 `;

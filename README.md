@@ -2,10 +2,10 @@
 Digital PhoneBook is a repository digital the numbers phone
 
 Home Page:
-![](images/home.png)
+![](images/home.PNG)
 
 Register Phones:
-![](images/register.png)
+![](images/register.PNG)
 
 ## Installation and Development setup
 

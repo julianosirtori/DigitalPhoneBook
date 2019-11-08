@@ -1,5 +1,5 @@
 # Digital PhoneBook
-Digital PhoneBook is a repository digital the numbers phone
+Digital PhoneBook is a repository digital the numbers phones
 
 Home Page:
 ![](images/home.PNG)

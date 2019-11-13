@@ -161,8 +161,14 @@ export default class Telefones extends Component {
             const { data } = response;
             this.setState({ phones: data });
         } catch (err) {
-            console.log(err);
-            toast.error('Ocorreu um erro');
+            const { status } = err.response;
+            console.log(err.response);
+            if (status === 401) {
+                const { history } = this.props;
+                history.push('/login');
+            } else {
+                toast.error('Ocorreu um erro');
+            }
         }
     }
 
@@ -211,7 +217,9 @@ export default class Telefones extends Component {
                             />
                         </InputController>
                         <InputController>
-                            <label>Tags*</label>
+                            <label>
+                                Tags (separadas por ; (ponto e virgula))*
+                            </label>
                             <input
                                 type="text"
                                 name="tags"
@@ -237,6 +245,9 @@ export default class Telefones extends Component {
                     </Form>
                     <ContainerSerch>
                         <InputController>
+                            <label>
+                                Comece a digitar no campo abaixo para pesquisar
+                            </label>
                             <input
                                 type="text"
                                 value={search}
@@ -249,7 +260,7 @@ export default class Telefones extends Component {
                     <Table>
                         <thead>
                             <tr>
-                                <th>Nome</th>
+                                <th>Descrição</th>
                                 <th>Tags</th>
                                 <th>Telefone</th>
                                 <th />

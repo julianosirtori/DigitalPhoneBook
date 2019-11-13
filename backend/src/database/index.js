@@ -3,8 +3,9 @@ import databaseConfig from '../config/database';
 
 import User from '../app/models/User';
 import Phone from '../app/models/Phone';
+import Call from '../app/models/Call';
 
-const models = [User, Phone];
+const models = [User, Phone, Call];
 
 class Database {
     constructor() {

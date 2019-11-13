@@ -6,6 +6,7 @@ import UserController from './app/controllers/UserController';
 import PhoneController from './app/controllers/PhoneController';
 import SessionController from './app/controllers/SessionController';
 import SearchController from './app/controllers/SearchController';
+import CallController from './app/controllers/CallController';
 
 const routes = new Router();
 
@@ -13,6 +14,8 @@ routes.get('/searchs/:search', SearchController.index);
 
 routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
+
+routes.get('/calls', CallController.index);
 
 routes.get('/phones', PhoneController.index);
 routes.post('/phones', PhoneController.store);

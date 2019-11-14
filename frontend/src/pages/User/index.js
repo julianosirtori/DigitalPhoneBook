@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import {
     AiOutlineReload,
     AiFillEdit,
@@ -28,6 +29,12 @@ import {
 } from '../../styles/admin';
 
 export default class User extends Component {
+    static propTypes = {
+        history: PropTypes.shape({
+            push: PropTypes.func,
+        }).isRequired,
+    };
+
     state = {
         users: [],
         id: '',

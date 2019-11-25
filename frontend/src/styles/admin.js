@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
 import { darken } from 'polished';
 
 export const Header = styled.div`
@@ -9,17 +8,7 @@ export const Header = styled.div`
     justify-content: space-between;
 `;
 
-export const LogoLink = styled(Link)`
-    img {
-        width: 150px;
-        height: 70px;
-        margin-left: 16px;
-    }
-`;
-
 export const Buttons = styled.div``;
-
-export const BtnLink = styled.div``;
 
 export const Form = styled.div`
     width: 100%;
@@ -104,17 +93,6 @@ export const Container = styled.div`
     align-items: center;
     background: white;
     min-height: 100%;
-`;
-
-export const BtnLogout = styled.button`
-    background: #e30613;
-    border: none;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 4px 13px;
-    border-radius: 4px;
-    margin-right: 16px;
 `;
 
 export const ButtonEditar = styled.button`

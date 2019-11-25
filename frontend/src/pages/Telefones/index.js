@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import {
     AiOutlineReload,
@@ -8,8 +8,6 @@ import {
     AiOutlineArrowLeft,
     AiOutlineArrowRight,
 } from 'react-icons/ai';
-
-import logo from '../../assets/images/logo.svg';
 
 import api from '../../services/api';
 import { logout } from '../../services/auth';
@@ -22,11 +20,6 @@ import {
     Form,
     ButtonSubmit,
     Container,
-    Header,
-    LogoLink,
-    Buttons,
-    BtnLink,
-    BtnLogout,
     ButtonEditar,
     ButtonApagar,
     Paginator,
@@ -197,22 +190,7 @@ export default class Telefones extends Component {
         } = this.state;
         return (
             <>
-                <ToastContainer />
                 <Container>
-                    <Header>
-                        <LogoLink>
-                            <img src={logo} alt="Logo" />
-                        </LogoLink>
-                        <Buttons>
-                            <BtnLink to="/chamadas">Chamadas</BtnLink>
-                            <BtnLink to="/telefones">Telefones</BtnLink>
-                            <BtnLink to="/usuarios">Usuarios</BtnLink>
-                            <BtnLogout onClick={this.handleButtonSair}>
-                                Sair
-                            </BtnLogout>
-                        </Buttons>
-                    </Header>
-
                     <Form>
                         <h1>Cadastro de Ramais</h1>
                         <input name="id" type="hidden" value={id} />

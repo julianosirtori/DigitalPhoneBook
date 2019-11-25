@@ -9,20 +9,23 @@ import {
     AiOutlineArrowRight,
 } from 'react-icons/ai';
 
+import logo from '../../assets/images/logo.svg';
+
 import api from '../../services/api';
 import { logout } from '../../services/auth';
-
-import { BtnTelefones } from './styles';
 
 import {
     InputController,
     Table,
+    Form,
     ButtonSubmit,
     Container,
-    ContainerBotoes,
+    Header,
+    LogoLink,
+    Buttons,
+    BtnLink,
     BtnLogout,
     ButtonEditar,
-    Form,
     ButtonApagar,
     Paginator,
     ButtonNavigationPage,
@@ -170,12 +173,19 @@ export default class User extends Component {
             <>
                 <ToastContainer />
                 <Container>
-                    <ContainerBotoes>
-                        <BtnTelefones to="/telefones">Telefones</BtnTelefones>
-                        <BtnLogout onClick={this.handleButtonSair}>
-                            Sair
-                        </BtnLogout>
-                    </ContainerBotoes>
+                    <Header>
+                        <LogoLink to="/">
+                            <img src={logo} alt="Logo" />
+                        </LogoLink>
+                        <Buttons>
+                            <BtnLink to="/chamadas">Chamadas</BtnLink>
+                            <BtnLink to="/telefones">Telefones</BtnLink>
+                            <BtnLink to="/usuarios">Usuarios</BtnLink>
+                            <BtnLogout onClick={this.handleButtonSair}>
+                                Sair
+                            </BtnLogout>
+                        </Buttons>
+                    </Header>
                     <Form>
                         <h1>Cadastro de Usuários</h1>
                         <input name="id" type="hidden" value={id} />

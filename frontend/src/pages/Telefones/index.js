@@ -9,10 +9,12 @@ import {
     AiOutlineArrowRight,
 } from 'react-icons/ai';
 
+import logo from '../../assets/images/logo.svg';
+
 import api from '../../services/api';
 import { logout } from '../../services/auth';
 
-import { BtnUsuarios, ContainerSerch } from './styles';
+import { ContainerSerch } from './styles';
 
 import {
     InputController,
@@ -20,7 +22,10 @@ import {
     Form,
     ButtonSubmit,
     Container,
-    ContainerBotoes,
+    Header,
+    LogoLink,
+    Buttons,
+    BtnLink,
     BtnLogout,
     ButtonEditar,
     ButtonApagar,
@@ -194,12 +199,20 @@ export default class Telefones extends Component {
             <>
                 <ToastContainer />
                 <Container>
-                    <ContainerBotoes>
-                        <BtnUsuarios to="/usuarios">Usuarios</BtnUsuarios>
-                        <BtnLogout onClick={this.handleButtonSair}>
-                            Sair
-                        </BtnLogout>
-                    </ContainerBotoes>
+                    <Header>
+                        <LogoLink>
+                            <img src={logo} alt="Logo" />
+                        </LogoLink>
+                        <Buttons>
+                            <BtnLink to="/chamadas">Chamadas</BtnLink>
+                            <BtnLink to="/telefones">Telefones</BtnLink>
+                            <BtnLink to="/usuarios">Usuarios</BtnLink>
+                            <BtnLogout onClick={this.handleButtonSair}>
+                                Sair
+                            </BtnLogout>
+                        </Buttons>
+                    </Header>
+
                     <Form>
                         <h1>Cadastro de Ramais</h1>
                         <input name="id" type="hidden" value={id} />

@@ -1,5 +1,25 @@
 import styled, { css, keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { darken } from 'polished';
+
+export const Header = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+`;
+
+export const LogoLink = styled(Link)`
+    img {
+        width: 150px;
+        height: 70px;
+        margin-left: 16px;
+    }
+`;
+
+export const Buttons = styled.div``;
+
+export const BtnLink = styled.div``;
 
 export const Form = styled.div`
     width: 100%;
@@ -84,14 +104,6 @@ export const Container = styled.div`
     align-items: center;
     background: white;
     min-height: 100%;
-`;
-
-export const ContainerBotoes = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding: 16px 16px;
-    justify-content: flex-end;
 `;
 
 export const BtnLogout = styled.button`

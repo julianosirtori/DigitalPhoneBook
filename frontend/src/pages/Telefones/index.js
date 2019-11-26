@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 import {
     AiOutlineReload,
     AiFillEdit,
@@ -10,7 +9,6 @@ import {
 } from 'react-icons/ai';
 
 import api from '../../services/api';
-import { logout } from '../../services/auth';
 
 import { ContainerSerch } from './styles';
 
@@ -27,12 +25,6 @@ import {
 } from '../../styles/admin';
 
 export default class Telefones extends Component {
-    static propTypes = {
-        history: PropTypes.shape({
-            push: PropTypes.func,
-        }).isRequired,
-    };
-
     state = {
         phones: [],
         id: '',
@@ -129,12 +121,6 @@ export default class Telefones extends Component {
         }
     };
 
-    handleButtonSair = () => {
-        logout();
-        const { history } = this.props;
-        history.push('/login');
-    };
-
     nextPage = async () => {
         const { page } = this.state;
         this.setState({
@@ -169,8 +155,8 @@ export default class Telefones extends Component {
             const { status } = err.response;
             console.log(err.response);
             if (status === 401) {
-                const { history } = this.props;
-                history.push('/login');
+                // const { history } = this.props;
+                // history.push('/login');
             } else {
                 toast.error('Ocorreu um erro');
             }
@@ -192,7 +178,7 @@ export default class Telefones extends Component {
             <>
                 <Container>
                     <Form>
-                        <h1>Cadastro de Ramais</h1>
+                        <h1>Telefones</h1>
                         <input name="id" type="hidden" value={id} />
                         <InputController>
                             <label>Descrição*</label>

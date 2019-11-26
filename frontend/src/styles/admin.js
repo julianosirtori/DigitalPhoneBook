@@ -1,15 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { darken } from 'polished';
 
-export const Header = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-`;
-
-export const Buttons = styled.div``;
-
 export const Form = styled.div`
     width: 100%;
     max-width: 632px;
@@ -86,13 +77,10 @@ export const ButtonSubmit = styled.button.attrs(props => ({
 `;
 
 export const Container = styled.div`
-    display: flex;
-    max-width: 824px;
-    margin: 0px auto;
-    flex-direction: column;
-    align-items: center;
-    background: white;
-    min-height: 100%;
+    width: 100%;
+    max-width: 720px;
+    padding: 0 20px;
+    margin: 0 auto;
 `;
 
 export const ButtonEditar = styled.button`
@@ -117,7 +105,7 @@ export const ButtonApagar = styled.button`
 
 export const Table = styled.table`
     width: 100%;
-    max-width: 680px;
+    max-width: 720px;
 
     margin-bottom: 16px;
     display: table;
@@ -145,7 +133,7 @@ export const Table = styled.table`
 export const Paginator = styled.div`
     display: flex;
     width: 100%;
-    max-width: 680px;
+    max-width: 720px;
     flex-direction: row;
     padding: 8px;
     justify-content: space-between;

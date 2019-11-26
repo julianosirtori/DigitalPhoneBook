@@ -1,93 +1,88 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineReload } from 'react-icons/ai';
-import PropTypes from 'prop-types';
 
 import api from '../../services/api';
+import history from '../../services/history';
 import { login } from '../../services/auth';
 
 import { Container, FormLogin } from './styles';
 import { InputController, ButtonSubmit } from '../../styles/admin';
 
-export default class Login extends Component {
-    static propTypes = {
-        history: PropTypes.shape({
-            push: PropTypes.func,
-        }).isRequired,
-    };
+export default function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    state = {
-        email: '',
-        password: '',
-        error: '',
-        loading: false,
-    };
+    function handleEmail(event) {
+        const { value } = event.target;
+        setEmail(value);
+        // this.setState({
+        //     [name]: value,
+        // });
+    }
 
-    handleInputChange = event => {
-        const { value, name } = event.target;
-        this.setState({
-            [name]: value,
-        });
-    };
+    function handlePassword(event) {
+        const { value } = event.target;
+        setPassword(value);
+    }
 
-    handleSubmit = async event => {
+    async function handleSubmit(event) {
         event.preventDefault();
-        this.setState({ loading: true });
+        setLoading(true);
         try {
-            const response = await api.post('/sessions', this.state);
+            const response = await api.post('/sessions', { email, password });
             const { token } = response.data;
             login(token);
-
-            this.setState({ error: '', loading: false });
-            const { history } = this.props;
+            setLoading(false);
+            setError('');
             history.push('/telefones');
         } catch (err) {
             const { data } = err.response;
-            const { error } = data;
-            this.setState({ error, loading: false });
+
+            setLoading(false);
+            setError(data.error);
         }
-    };
-
-    render() {
-        const { email, password, error, loading } = this.state;
-        return (
-            <>
-                <Container>
-                    <FormLogin onSubmit={this.handleSubmit}>
-                        <h1>Login</h1>
-                        <InputController>
-                            <label>Email*</label>
-                            <input
-                                placeholder="Digite o seu telene aqui"
-                                type="email"
-                                required
-                                name="email"
-                                value={email}
-                                onChange={this.handleInputChange}
-                            />
-                        </InputController>
-                        <InputController>
-                            <label>Senha*</label>
-                            <input
-                                placeholder="Digite a sua senha aqui"
-                                type="password"
-                                name="password"
-                                required
-                                value={password}
-                                onChange={this.handleInputChange}
-                            />
-                        </InputController>
-
-                        <ButtonSubmit loading={loading ? 1 : 0}>
-                            {loading ? (
-                                <AiOutlineReload />
-                            ) : (
-                                <strong>Entrar</strong>
-                            )}
-                        </ButtonSubmit>
-                        <p>{error}</p>
-                    </FormLogin>
-                </Container>
-            </>
-        );
     }
+
+    return (
+        <>
+            <Container>
+                <FormLogin onSubmit={handleSubmit}>
+                    <h1>Login</h1>
+                    <InputController>
+                        <label>Email*</label>
+                        <input
+                            placeholder="Digite o seu email aqui"
+                            type="email"
+                            required
+                            name="email"
+                            value={email}
+                            onChange={handleEmail}
+                        />
+                    </InputController>
+                    <InputController>
+                        <label>Senha*</label>
+                        <input
+                            placeholder="Digite a sua senha aqui"
+                            type="password"
+                            name="password"
+                            required
+                            value={password}
+                            onChange={handlePassword}
+                        />
+                    </InputController>
+
+                    <ButtonSubmit loading={loading ? 1 : 0}>
+                        {loading ? (
+                            <AiOutlineReload />
+                        ) : (
+                            <strong>Entrar</strong>
+                        )}
+                    </ButtonSubmit>
+                    <p>{error}</p>
+                </FormLogin>
+            </Container>
+        </>
+    );
 }

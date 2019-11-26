@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
+import Header from '../../../components/Header';
+
 export default function AdministrationLayout({ children }) {
-    return <Container>{children}</Container>;
+    return (
+        <Container>
+            <Header />
+            {children}
+        </Container>
+    );
 }
 
 AdministrationLayout.propTypes = {

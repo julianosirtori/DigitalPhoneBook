@@ -166,7 +166,7 @@ export default class User extends Component {
             <>
                 <Container>
                     <Form>
-                        <h1>Cadastro de Usuários</h1>
+                        <h1>Usuários</h1>
                         <input name="id" type="hidden" value={id} />
                         <InputController>
                             <label>Nome*</label>

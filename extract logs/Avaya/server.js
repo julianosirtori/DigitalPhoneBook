@@ -10,7 +10,7 @@ function timeout(ms) {
 
 async function main(){
     while(true){
-        await timeout(120000);
+        await timeout(60000);
         try{
             console.log("Init Extraction: " + new Date());
             console.log("Moving File");
